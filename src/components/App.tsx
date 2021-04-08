@@ -1,43 +1,35 @@
 import React, {useState} from 'react';
 import logo from '../assets/dice-stats-logo.svg';
 import './App.css';
-import utils from '../utils';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import StatsPanel from './StatsPanel';
+import Dices from './Dices';
 
 const TurnBoard = () => {
 
   const [turn, setTurn] = useState(1);
-  const [throws, setThrows] = useState(Array<Array<number>>());
-  const [currentDices, setCurrentDices] = useState([1,1]);
+  const [throws, setThrows] = useState(Array<number>()); 
 
-  const handleDiceThrow = () => {
-    setCurrentDices([utils.random(1,6), utils.random(1,6)]);
-  }
+  let currentThrow: number = 0;
 
   const handleNextTurn = () => {
     setTurn(turn + 1);
-    setThrows([...throws, currentDices]);
+    setThrows([...throws, currentThrow]);
   }
 
   return (
+    <>
+    <CssBaseline />
     <div className="turn-board">
-        <div className="turn-indicator">Turn: {turn}</div>
-        <div className="dices">
-          <Dice value={currentDices[0]} />
-          <Dice value={currentDices[1]} />
-        </div>
-        <div className="actions">
-          <button onClick={handleDiceThrow}>Throw dices</button>
-          <button>Manual throw</button>
-          <button onClick={handleNextTurn}>Next turn</button>
-          <button>End game</button>
-        </div>
+      <div className="turn-indicator">Turn: {turn}</div>
+      <Dices onThrowResolution={(num: number) => currentThrow = num} />
+      <div className="actions">
+        <button onClick={handleNextTurn}>Next turn</button>
+        <button>End game</button>
       </div>
-  );
-}
-
-const Dice = (props: any) => {
-  return (
-    <div className="dice">{props.value}</div>
+      <StatsPanel throws={throws} />
+    </div>
+    </>
   );
 }
 
