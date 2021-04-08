@@ -57,7 +57,7 @@
   margin: 10px;
 }
 
-.turn-board .actions {
+.turn-board .stats-panel {
   display: flex;
   flex-direction: column;
   align-items: center;
