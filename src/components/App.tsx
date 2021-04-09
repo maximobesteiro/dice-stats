@@ -38,9 +38,7 @@ const TurnBoard = (props: TurnBoardProps) => {
       <div className="turn-indicator">Turn: {turn}</div>
       <Dices key={turn} onThrowResolution={handleThrowResolution} />
       <Button disabled={nextTurnDisabled} variant="outlined" color="primary" onClick={handleNextTurn}>Next turn</Button>
-      <ThrowsHistogram throws={props.throws} onBarClick={(data: any, index: any) => {
-        console.debug(`Number ${data.num} has been rolled ${data.count} times. Element is at index ${index}`);
-    }} />
+      <ThrowsHistogram throws={props.throws} />
     </div>
   );
 }
@@ -48,13 +46,17 @@ const TurnBoard = (props: TurnBoardProps) => {
 function App() {
   const [gameId, setGameId] = useState(1);
   const [throws, setThrows] = useState(Array<number>());
+  const [endGameDisabled, setEndGameDisabled] = useState(true);
 
-  const handleEndGame = () => {
+  const handleNewGame = () => {
     setGameId(gameId + 1);
+    setThrows([]);
+    setEndGameDisabled(true);
   }
 
   const handleTerminatedTurn = (num: number) => {
     setThrows([...throws, num]);
+    setEndGameDisabled(false);
   }
 
   return (
@@ -68,7 +70,7 @@ function App() {
         </p>
       </header>
       <TurnBoard key={gameId} throws={throws} onTerminatedTurn={handleTerminatedTurn} />
-      <EndGameButton throws={throws} />
+      <EndGameButton disabled={endGameDisabled} throws={throws} onNewGame={handleNewGame}/>
     </div>
     </>
   );
