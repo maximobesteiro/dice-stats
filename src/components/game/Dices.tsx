@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import ManualThrowButton from './ManualThrowButton';
-import utils from '../utils';
+import utils from '../../utils/math';
 
 interface DiceProps {
     value: number;
