@@ -1,5 +1,5 @@
 import React, { FC, ReactElement, useState } from "react";
-import clsx from 'clsx';
+import clsx from "clsx";
 import {
   List,
   Divider,
@@ -9,13 +9,13 @@ import {
   Collapse,
   Icon,
   Tooltip,
-  IconButton
+  IconButton,
 } from "@material-ui/core";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import DefaultIcon from "@material-ui/icons/FileCopy";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 // components
 import MenuItem from "./MenuItem";
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
     selected: {
       transition: "box-shadow",
       transitionDuration: "1s",
-      boxShadow: `0 0 3px ${theme.palette.primary.main}, 0 0 9px ${theme.palette.primary.main}, 0 0 11px ${theme.palette.primary.main}, 0 0 30px ${theme.palette.primary.main}`
+      boxShadow: `0 0 3px ${theme.palette.primary.main}, 0 0 9px ${theme.palette.primary.main}, 0 0 11px ${theme.palette.primary.main}, 0 0 30px ${theme.palette.primary.main}`,
     },
   })
 );
@@ -62,9 +62,13 @@ const Menu: FC<{}> = (): ReactElement => {
                 <ListItemIcon>
                   <IconButton
                     className={clsx({
-                      [classes.selected]: !open && route.subRoutes.some((item: RouteItem) => item.path === location.pathname)
+                      [classes.selected]:
+                        !open &&
+                        route.subRoutes.some(
+                          (item: RouteItem) => item.path === location.pathname
+                        ),
                     })}
-                    size='small'
+                    size="small"
                   >
                     <Icon component={route.icon || DefaultIcon} />
                   </IconButton>
@@ -75,10 +79,10 @@ const Menu: FC<{}> = (): ReactElement => {
                     <ExpandLess />
                   </Tooltip>
                 ) : (
-                    <Tooltip title="Expand" placement="bottom">
-                      <ExpandMore />
-                    </Tooltip>
-                  )}
+                  <Tooltip title="Expand" placement="bottom">
+                    <ExpandMore />
+                  </Tooltip>
+                )}
               </ListItem>
               <Collapse in={open} timeout="auto" unmountOnExit>
                 <List className={classes.nested}>
@@ -98,21 +102,21 @@ const Menu: FC<{}> = (): ReactElement => {
               </Collapse>
             </>
           ) : (
-              <MenuItem
-                key={`${route.key}`}
-                title={route.title}
-                icon={route.icon}
-                tooltip={route.tooltip}
-                path={route.path}
-                enabled={route.enabled}
-                component={route.component}
-                subRoutes={route.subRoutes}
-              />
-            )}
+            <MenuItem
+              key={`${route.key}`}
+              title={route.title}
+              icon={route.icon}
+              tooltip={route.tooltip}
+              path={route.path}
+              enabled={route.enabled}
+              component={route.component}
+              subRoutes={route.subRoutes}
+            />
+          )}
           {route.appendDivider && <Divider className={classes.divider} />}
         </>
       ))}
-    </List >
+    </List>
   );
 };
 

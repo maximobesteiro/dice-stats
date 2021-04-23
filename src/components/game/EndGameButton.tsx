@@ -1,16 +1,21 @@
-import React from 'react';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
+import React from "react";
+import {
+  createStyles,
+  Theme,
+  withStyles,
+  WithStyles,
+} from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogActions from "@material-ui/core/DialogActions";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import Typography from "@material-ui/core/Typography";
 
-import ThrowsHistogram from './ThrowsHistogram';
-import SpecificDiceThrowChart from './SpecificDiceThrowChart';
+import ThrowsHistogram from "./ThrowsHistogram";
+import SpecificDiceThrowChart from "./SpecificDiceThrowChart";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -19,7 +24,7 @@ const styles = (theme: Theme) =>
       padding: theme.spacing(2),
     },
     closeButton: {
-      position: 'absolute',
+      position: "absolute",
       right: theme.spacing(1),
       top: theme.spacing(1),
       color: theme.palette.grey[500],
@@ -38,7 +43,11 @@ const DialogTitle = withStyles(styles)((props: DialogTitleProps) => {
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
           <CloseIcon />
         </IconButton>
       ) : null}
@@ -60,15 +69,14 @@ const DialogActions = withStyles((theme: Theme) => ({
 }))(MuiDialogActions);
 
 interface EndGameProps {
-    throws: number[];
-    onNewGame: () => void;
-    disabled: boolean;
+  throws: number[];
+  onNewGame: () => void;
+  disabled: boolean;
 }
 
 const EndGameButton = (props: EndGameProps) => {
-
-    const [open, setOpen] = React.useState(false);
-    const [selectedDice, setSelectedDice] = React.useState(0);
+  const [open, setOpen] = React.useState(false);
+  const [selectedDice, setSelectedDice] = React.useState(0);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -83,23 +91,36 @@ const EndGameButton = (props: EndGameProps) => {
   const handleStartNewGame = () => {
     handleClose();
     props.onNewGame();
-  }
+  };
 
   return (
     <div>
-      <Button disabled={props.disabled} variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button
+        disabled={props.disabled}
+        variant="outlined"
+        color="primary"
+        onClick={handleClickOpen}
+      >
         End game
       </Button>
-      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}
-        fullScreen={true} >
+      <Dialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+        fullScreen={true}
+      >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           Game Information
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
-            Tap or click on any of the bars in the next chart to see specific throw history of the selected number.
+            Tap or click on any of the bars in the next chart to see specific
+            throw history of the selected number.
           </Typography>
-          <ThrowsHistogram throws={props.throws} onBarClick={handleOnBarClick}/>
+          <ThrowsHistogram
+            throws={props.throws}
+            onBarClick={handleOnBarClick}
+          />
           <SpecificDiceThrowChart throws={props.throws} dice={selectedDice} />
         </DialogContent>
         <DialogActions>

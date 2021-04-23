@@ -1,11 +1,11 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 interface ManualThrowButtonProps {
   onClose: (num: number) => void;
@@ -13,7 +13,7 @@ interface ManualThrowButtonProps {
 
 export default function ManualThrowButton(props: ManualThrowButtonProps) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState<string>('');
+  const [value, setValue] = React.useState<string>("");
   const [errorState, setErrorState] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -25,11 +25,11 @@ export default function ManualThrowButton(props: ManualThrowButtonProps) {
   };
 
   const handleOk = () => {
-    if(!value) {
+    if (!value) {
       setErrorState(true);
-    } else if(!errorState) {
+    } else if (!errorState) {
       setOpen(false);
-      setValue('');
+      setValue("");
       props.onClose(Number(value));
     }
   };
@@ -37,10 +37,9 @@ export default function ManualThrowButton(props: ManualThrowButtonProps) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputNum: number = Number(event.target.value);
     setValue(event.target.value);
-    if(inputNum >= 2 && inputNum <=12) {
+    if (inputNum >= 2 && inputNum <= 12) {
       setErrorState(false);
-    }
-    else {
+    } else {
       setErrorState(true);
     }
   };
@@ -50,11 +49,16 @@ export default function ManualThrowButton(props: ManualThrowButtonProps) {
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Manual dice throw
       </Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" >
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
         <DialogTitle id="form-dialog-title">Manual dice throw</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Use your good old real-life dices and just input the resulting sum in the following field
+            Use your good old real-life dices and just input the resulting sum
+            in the following field
           </DialogContentText>
           <TextField
             autoFocus
@@ -69,7 +73,7 @@ export default function ManualThrowButton(props: ManualThrowButtonProps) {
             onChange={handleChange}
             required
             error={errorState}
-            inputProps={{ inputMode: 'numeric' }}
+            inputProps={{ inputMode: "numeric" }}
           />
         </DialogContent>
         <DialogActions>

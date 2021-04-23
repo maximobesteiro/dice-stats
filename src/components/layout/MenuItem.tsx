@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
     selected: {
       transition: "box-shadow",
       transitionDuration: "1s",
-      boxShadow: `0 0 3px ${theme.palette.primary.main}, 0 0 9px ${theme.palette.primary.main}, 0 0 11px ${theme.palette.primary.main}, 0 0 30px ${theme.palette.primary.main}`
+      boxShadow: `0 0 3px ${theme.palette.primary.main}, 0 0 9px ${theme.palette.primary.main}, 0 0 11px ${theme.palette.primary.main}, 0 0 30px ${theme.palette.primary.main}`,
     },
     nested: {
       marginLeft: theme.spacing(2),

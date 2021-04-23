@@ -1,11 +1,11 @@
-import React, {FC, ReactElement} from 'react';
+import React, { FC, ReactElement } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
-    AppBar,
-    Toolbar,
-    Typography,
-    IconButton,
-    Tooltip,
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Tooltip,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
@@ -62,54 +62,53 @@ interface Props {
   useDefaultTheme: boolean;
 }
 
-const Header: FC<Props> = (
-  {
-    open,
-    handleMenuOpen,
-    toggleTheme,
-    useDefaultTheme,
-  }) : ReactElement => {
-    const classes = useStyles();
+const Header: FC<Props> = ({
+  open,
+  handleMenuOpen,
+  toggleTheme,
+  useDefaultTheme,
+}): ReactElement => {
+  const classes = useStyles();
 
-    return (
-        <AppBar
-            position="fixed"
-            elevation={0}
-            className={classes.appBar}
+  return (
+    <AppBar position="fixed" elevation={0} className={classes.appBar}>
+      <Toolbar className={classes.toolbar}>
+        <div className={classes.title}>
+          <IconButton
+            color="inherit"
+            aria-label="open menu"
+            onClick={() => alert("menu")}
+            edge="start"
+            className={classes.menuButton}
+            size="small"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap>
+            {APP_TITLE}
+          </Typography>
+        </div>
+        <IconButton onClick={() => alert("toggle theme")}>
+          {true ? (
+            <Tooltip title="Switch to dark mode" placement="bottom">
+              <Brightness3Icon />
+            </Tooltip>
+          ) : (
+            <Tooltip title="Switch to light mode" placement="bottom">
+              <Brightness7Icon />
+            </Tooltip>
+          )}
+        </IconButton>
+        <IconButton
+          size="small"
+          color="inherit"
+          onClick={() => alert("user menu")}
         >
-            <Toolbar className={classes.toolbar}>
-          <div className={classes.title}>
-            <IconButton
-              color="inherit"
-              aria-label="open menu"
-              onClick={()=>alert("menu")}
-              edge="start"
-              className={classes.menuButton}
-              size="small"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" noWrap>
-              {APP_TITLE}
-            </Typography>
-          </div>
-          <IconButton onClick={()=>alert("toggle theme")}>
-            {true ? (
-              <Tooltip title="Switch to dark mode" placement="bottom">
-                <Brightness3Icon />
-              </Tooltip>
-            ) : (
-              <Tooltip title="Switch to light mode" placement="bottom">
-                <Brightness7Icon />
-              </Tooltip>
-            )}
-          </IconButton>
-          <IconButton size="small" color="inherit" onClick={()=>alert("user menu")}>
-            <UserIcon />
-          </IconButton>
-        </Toolbar>
-        </AppBar>
-    );
-}
+          <UserIcon />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+  );
+};
 
 export default Header;

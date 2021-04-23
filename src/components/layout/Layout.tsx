@@ -1,12 +1,12 @@
-import React, {FC, ReactNode, useReducer} from 'react';
-import clsx from 'clsx';
-import { CssBaseline } from '@material-ui/core';
+import React, { FC, ReactNode, useReducer } from "react";
+import clsx from "clsx";
+import { CssBaseline } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 // components
-import Header from './Header';
-import Footer from './Footer';
-import Navigation from './Navigation';
+import Header from "./Header";
+import Footer from "./Footer";
+import Navigation from "./Navigation";
 
 // constants
 import { DRAWER_WIDTH, FOOTER_HEIGHT } from "../../utils/constants";
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
     },
-   content: {
+    content: {
       flexGrow: 1,
       padding: theme.spacing(3),
       minHeight: `calc(100vh - ${FOOTER_HEIGHT}px)`,
@@ -43,37 +43,37 @@ const useStyles = makeStyles((theme: Theme) =>
 
 // define interface to represent component props
 interface Props {
-    toggleTheme: () => void;
-    useDefaultTheme: boolean;
-    children: ReactNode;
+  toggleTheme: () => void;
+  useDefaultTheme: boolean;
+  children: ReactNode;
 }
 
-const Layout: FC<Props> = ({ toggleTheme, useDefaultTheme, children })=> {
-    const classes = useStyles();
-    const [open, toggle] = useReducer((open) => !open, true);
-    return (
-        <div className={classes.root}>
-            <CssBaseline />
-            <Header
-                open={open}
-                handleMenuOpen={toggle}
-                toggleTheme={toggleTheme}
-                useDefaultTheme={useDefaultTheme}
-             />
-            <Navigation open={open} handleMenuClose={toggle} />
-            <main
-                className={clsx(classes.content, {
-                [classes.contentShift]: open,
-                })}
-            >
-                <div className={classes.toolbar} />
-                {children}
-            </main>
-            <footer>
-                <Footer />
-            </footer>
-        </div>
-    );
+const Layout: FC<Props> = ({ toggleTheme, useDefaultTheme, children }) => {
+  const classes = useStyles();
+  const [open, toggle] = useReducer((open) => !open, true);
+  return (
+    <div className={classes.root}>
+      <CssBaseline />
+      <Header
+        open={open}
+        handleMenuOpen={toggle}
+        toggleTheme={toggleTheme}
+        useDefaultTheme={useDefaultTheme}
+      />
+      <Navigation open={open} handleMenuClose={toggle} />
+      <main
+        className={clsx(classes.content, {
+          [classes.contentShift]: open,
+        })}
+      >
+        <div className={classes.toolbar} />
+        {children}
+      </main>
+      <footer>
+        <Footer />
+      </footer>
+    </div>
+  );
 };
 
 export default Layout;
