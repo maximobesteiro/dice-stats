@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 const Footer: FC = () => {
-  return <div>Footer</div>;
+  return <div style={{ textAlign: "center" }}>Footer</div>;
 };
 
 export default Footer;

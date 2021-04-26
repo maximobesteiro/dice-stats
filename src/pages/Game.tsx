@@ -3,6 +3,10 @@ import logo from "../assets/dice-stats-logo.svg";
 import "../assets/App.css";
 import TurnBoard from "../components/game/TurnBoard";
 import EndGameButton from "../components/game/EndGameButton";
+import { Helmet } from "react-helmet";
+
+// constants
+import { PAGE_TITLE_GAME } from "../utils/constants";
 
 function Game() {
   const [gameId, setGameId] = useState(1);
@@ -22,6 +26,9 @@ function Game() {
 
   return (
     <>
+      <Helmet>
+        <title>{PAGE_TITLE_GAME}</title>
+      </Helmet>
       <div className="app">
         <header className="app-header">
           <h1>

@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from "react";
+import { FC, ReactElement } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
   AppBar,
@@ -8,9 +8,8 @@ import {
   Tooltip,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import Brightness7Icon from "@material-ui/icons/Brightness7";
-import Brightness3Icon from "@material-ui/icons/Brightness3";
-import UserIcon from "@material-ui/icons/AccountCircle";
+import BrightnessHighIcon from "@material-ui/icons/BrightnessHigh";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
 
 // constants
 import { APP_TITLE, DRAWER_WIDTH } from "../../utils/constants";
@@ -56,14 +55,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 // define interface to represent component props
 interface Props {
-  open: boolean;
   handleMenuOpen: () => void;
   toggleTheme: () => void;
   useDefaultTheme: boolean;
 }
 
 const Header: FC<Props> = ({
-  open,
   handleMenuOpen,
   toggleTheme,
   useDefaultTheme,
@@ -77,7 +74,7 @@ const Header: FC<Props> = ({
           <IconButton
             color="inherit"
             aria-label="open menu"
-            onClick={() => alert("menu")}
+            onClick={handleMenuOpen}
             edge="start"
             className={classes.menuButton}
             size="small"
@@ -88,23 +85,16 @@ const Header: FC<Props> = ({
             {APP_TITLE}
           </Typography>
         </div>
-        <IconButton onClick={() => alert("toggle theme")}>
-          {true ? (
+        <IconButton color="inherit" onClick={toggleTheme}>
+          {useDefaultTheme ? (
             <Tooltip title="Switch to dark mode" placement="bottom">
-              <Brightness3Icon />
+              <Brightness4Icon />
             </Tooltip>
           ) : (
             <Tooltip title="Switch to light mode" placement="bottom">
-              <Brightness7Icon />
+              <BrightnessHighIcon />
             </Tooltip>
           )}
-        </IconButton>
-        <IconButton
-          size="small"
-          color="inherit"
-          onClick={() => alert("user menu")}
-        >
-          <UserIcon />
         </IconButton>
       </Toolbar>
     </AppBar>

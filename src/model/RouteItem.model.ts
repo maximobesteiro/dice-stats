@@ -9,8 +9,8 @@ interface RouteItem {
   component?: FC<{}>;
   enabled: boolean;
   icon?: ComponentType;
-  subRoutes?: Array<RouteItem>;
   appendDivider?: boolean;
+  hideFromMenu?: boolean;
 }
 
 export default RouteItem;

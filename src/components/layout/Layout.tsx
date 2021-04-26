@@ -1,5 +1,4 @@
-import React, { FC, ReactNode, useReducer } from "react";
-import clsx from "clsx";
+import { FC, ReactNode, useReducer } from "react";
 import { CssBaseline } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
@@ -23,10 +22,6 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(3),
       minHeight: `calc(100vh - ${FOOTER_HEIGHT}px)`,
       background: theme.palette.background.paper,
-      marginLeft: theme.spacing(7) + 1,
-      [theme.breakpoints.up("sm")]: {
-        marginLeft: theme.spacing(9) + 1,
-      },
     },
     toolbar: {
       ...theme.mixins.toolbar,
@@ -50,26 +45,21 @@ interface Props {
 
 const Layout: FC<Props> = ({ toggleTheme, useDefaultTheme, children }) => {
   const classes = useStyles();
-  const [open, toggle] = useReducer((open) => !open, true);
+  const [open, toggle] = useReducer((open) => !open, false);
   return (
     <div className={classes.root}>
       <CssBaseline />
       <Header
-        open={open}
         handleMenuOpen={toggle}
         toggleTheme={toggleTheme}
         useDefaultTheme={useDefaultTheme}
       />
       <Navigation open={open} handleMenuClose={toggle} />
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
+      <main className={classes.content}>
         <div className={classes.toolbar} />
         {children}
       </main>
-      <footer>
+      <footer style={{ borderColor: "red" }}>
         <Footer />
       </footer>
     </div>

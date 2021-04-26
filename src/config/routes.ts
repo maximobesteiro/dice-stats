@@ -1,6 +1,6 @@
 // icons
 import HomeIcon from "@material-ui/icons/Home";
-import CodeIcon from "@material-ui/icons/CodeOutlined";
+import CasinoIcon from "@material-ui/icons/Casino";
 import SettingsIcon from "@material-ui/icons/SettingsOutlined";
 
 // components
@@ -22,21 +22,22 @@ export const routes: Array<RouteItem> = [
     component: Home,
     icon: HomeIcon,
     appendDivider: true,
+    hideFromMenu: true,
   },
   {
     key: "router-game",
     title: "Game",
-    tooltip: "Game tooltip",
+    tooltip: "Start a new game",
     path: "/play",
     enabled: true,
     component: Game,
-    icon: CodeIcon,
+    icon: CasinoIcon,
     appendDivider: true,
   },
   {
     key: "router-settings",
     title: "Settings",
-    tooltip: "Settings",
+    tooltip: "Adjust game settings",
     path: "/settings",
     enabled: true,
     component: Settings,

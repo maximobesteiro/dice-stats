@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import DefaultIcon from "@material-ui/icons/FileCopy";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 // models
 import RouteItem from "../../model/RouteItem.model";
@@ -32,15 +32,19 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+interface MenuItemProps extends RouteItem {
+  onClick: () => void;
+}
+
 // functional component
-const MenuItem: FC<RouteItem> = (route: RouteItem): ReactElement => {
+const MenuItem: FC<MenuItemProps> = (route: MenuItemProps): ReactElement => {
   const classes = useStyles();
-  const location: any = useLocation();
 
   const handleNavigate = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ): void => {
     if (!route.enabled) e.preventDefault();
+    route.onClick();
   };
 
   return (
@@ -57,12 +61,7 @@ const MenuItem: FC<RouteItem> = (route: RouteItem): ReactElement => {
         <Tooltip title={route.tooltip || ""} placement="right">
           <ListItem button disabled={!route.enabled}>
             <ListItemIcon>
-              <IconButton
-                className={clsx({
-                  [classes.selected]: location.pathname === route.path,
-                })}
-                size="small"
-              >
+              <IconButton size="small">
                 <Icon component={route.icon || DefaultIcon} />
               </IconButton>
             </ListItemIcon>

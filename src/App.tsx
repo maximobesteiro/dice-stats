@@ -48,25 +48,14 @@ const App = () => {
             <Switch>
               <Layout toggleTheme={toggle} useDefaultTheme={useDefaultTheme}>
                 {/* for each route config, a react route is created */}
-                {routes.map((route: RouteItem) =>
-                  route.subRoutes ? (
-                    route.subRoutes.map((item: RouteItem) => (
-                      <Route
-                        key={`${item.key}`}
-                        path={`${item.path}`}
-                        component={item.component || DefaultComponent}
-                        exact
-                      />
-                    ))
-                  ) : (
-                    <Route
-                      key={`${route.key}`}
-                      path={`${route.path}`}
-                      component={route.component || DefaultComponent}
-                      exact
-                    />
-                  )
-                )}
+                {routes.map((route: RouteItem) => (
+                  <Route
+                    key={`${route.key}`}
+                    path={`${route.path}`}
+                    component={route.component || DefaultComponent}
+                    exact
+                  />
+                ))}
               </Layout>
             </Switch>
           </Router>
