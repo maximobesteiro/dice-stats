@@ -115,7 +115,7 @@ const EndGameButton = (props: EndGameProps) => {
         <DialogContent dividers>
           <Typography gutterBottom>
             Tap or click on any of the bars in the next chart to see specific
-            throw history of the selected number.
+            throw history for the selected number.
           </Typography>
           <ThrowsHistogram
             throws={props.throws}

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import logo from "../assets/dice-stats-logo.svg";
 import "../assets/App.css";
 import TurnBoard from "../components/game/TurnBoard";
 import EndGameButton from "../components/game/EndGameButton";
 import { Helmet } from "react-helmet";
+import RouteLeavingGuard from "../components/RouteLeavingGuard";
+import { useHistory } from "react-router-dom";
 
 // constants
 import { PAGE_TITLE_GAME } from "../utils/constants";
@@ -12,6 +13,7 @@ function Game() {
   const [gameId, setGameId] = useState(1);
   const [throws, setThrows] = useState(Array<number>());
   const [endGameDisabled, setEndGameDisabled] = useState(true);
+  const history = useHistory();
 
   const handleNewGame = () => {
     setGameId(gameId + 1);
@@ -30,17 +32,11 @@ function Game() {
         <title>{PAGE_TITLE_GAME}</title>
       </Helmet>
       <div className="app">
-        <header className="app-header">
-          <h1>
-            <img src={logo} className="app-logo" alt="logo" />
-            Dice Stats
-            <img src={logo} className="app-logo" alt="logo" />
-          </h1>
-          <p>
-            Play your dice-based game! <br />
-            I'll keep track of the stats ;-)
-          </p>
-        </header>
+        <RouteLeavingGuard
+          when={!endGameDisabled}
+          navigate={(path) => history.push(path)}
+          shouldBlockNavigation={() => true}
+        />
         <TurnBoard
           key={gameId}
           throws={throws}

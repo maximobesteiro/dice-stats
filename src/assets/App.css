@@ -8,9 +8,15 @@
   margin: 0 5vmin;
 }
 
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .app-logo {
-    animation: app-logo-spin infinite 5s linear;
+    transform: rotate(39deg);
   }
 }
 
@@ -25,7 +31,8 @@
   color: white;
 }
 
-.app-header h1, .app-header p {
+.app-header h1,
+.app-header p {
   margin: 10px 0;
 }
 

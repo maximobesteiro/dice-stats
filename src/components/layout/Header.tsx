@@ -1,18 +1,12 @@
 import { FC, ReactElement } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-  Tooltip,
-} from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, Tooltip } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import BrightnessHighIcon from "@material-ui/icons/BrightnessHigh";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 
 // constants
-import { APP_TITLE, DRAWER_WIDTH } from "../../utils/constants";
+import { DRAWER_WIDTH } from "../../utils/constants";
 
 // define css-in-js
 const useStyles = makeStyles((theme: Theme) =>
@@ -81,9 +75,6 @@ const Header: FC<Props> = ({
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            {APP_TITLE}
-          </Typography>
         </div>
         <IconButton color="inherit" onClick={toggleTheme}>
           {useDefaultTheme ? (
