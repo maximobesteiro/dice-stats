@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTheme } from "@material-ui/core/styles";
 import {
   BarChart,
   CartesianGrid,
@@ -17,6 +18,7 @@ interface ThrowsHistogramProps {
 
 const ThrowsHistogram = (props: ThrowsHistogramProps) => {
   const [selectedBarIndex, setSelectedBarIndex] = useState(-1);
+  const theme = useTheme();
 
   const buildData = () => {
     let histogram: number[] = Array<number>(11).fill(0);
@@ -57,11 +59,15 @@ const ThrowsHistogram = (props: ThrowsHistogramProps) => {
       <XAxis dataKey="num" />
       <YAxis allowDecimals={false} />
       <Tooltip />
-      <Bar dataKey="count" fill="#8884d8" onClick={handleOnBarClick}>
+      <Bar dataKey="count" fill="#1565c0" onClick={handleOnBarClick}>
         {data.map((entry, index) => (
           <Cell
             cursor="pointer"
-            fill={index === selectedBarIndex ? "#82ca9d" : "#8884d8"}
+            fill={
+              index === selectedBarIndex
+                ? theme.palette.secondary.main
+                : theme.palette.primary.main
+            }
             key={`cell-${index}`}
           />
         ))}

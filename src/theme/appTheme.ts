@@ -1,6 +1,6 @@
 import { createMuiTheme, Theme } from "@material-ui/core/styles";
 import blue from "@material-ui/core/colors/blue";
-import pink from "@material-ui/core/colors/pink";
+import deepOrange from "@material-ui/core/colors/deepOrange";
 
 // define light theme colors
 export const lightTheme: Theme = createMuiTheme({
@@ -10,7 +10,7 @@ export const lightTheme: Theme = createMuiTheme({
       main: blue[800],
     },
     secondary: {
-      main: pink[300],
+      main: deepOrange[300],
     },
   },
 });
@@ -20,7 +20,7 @@ export const darkTheme: Theme = createMuiTheme({
   palette: {
     type: "dark",
     primary: {
-      main: pink[300],
+      main: deepOrange[300],
     },
     secondary: {
       main: blue[800],

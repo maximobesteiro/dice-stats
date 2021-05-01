@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
+import { Button, Container, Typography } from "@material-ui/core";
 import ThrowsHistogram from "./ThrowsHistogram";
 import Dices from "./Dices";
 
@@ -29,19 +29,21 @@ const TurnBoard = (props: TurnBoardProps) => {
   };
 
   return (
-    <div className="turn-board">
-      <div className="turn-indicator">Turn: {turn}</div>
+    <Container className="turn-board">
+      <Typography variant="h5" color="textSecondary">
+        Turn: {turn}
+      </Typography>
       <Dices key={turn} onThrowResolution={handleThrowResolution} />
       <Button
         disabled={nextTurnDisabled}
-        variant="outlined"
+        variant="contained"
         color="primary"
         onClick={handleNextTurn}
       >
         Next turn
       </Button>
       <ThrowsHistogram throws={props.throws} />
-    </div>
+    </Container>
   );
 };
 

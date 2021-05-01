@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "@material-ui/core/styles";
 import {
   AreaChart,
   Area,
@@ -16,6 +17,8 @@ interface SpecificDiceThrowProps {
 }
 
 const SpecificDiceThrowChart = (props: SpecificDiceThrowProps) => {
+  const theme = useTheme();
+
   if (props.dice < 2) {
     return <></>;
   }
@@ -49,7 +52,12 @@ const SpecificDiceThrowChart = (props: SpecificDiceThrowProps) => {
         </XAxis>
         <YAxis allowDecimals={false} />
         <Tooltip />
-        <Area type="monotone" dataKey="count" stroke="#8884d8" fill="#8884d8" />
+        <Area
+          type="monotone"
+          dataKey="count"
+          stroke={theme.palette.secondary.main}
+          fill={theme.palette.secondary.main}
+        />
       </AreaChart>
     </ResponsiveContainer>
   );

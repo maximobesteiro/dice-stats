@@ -1,9 +1,14 @@
 import { Helmet } from "react-helmet";
 import { Typography, Container, Button, Box } from "@material-ui/core/";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+  useTheme,
+} from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 
-import logo from "../assets/dice-stats-logo.svg";
+import { ReactComponent as Logo } from "../assets/dice-stats-logo.svg";
 import "../assets/App.css";
 
 // constants
@@ -21,6 +26,10 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingTop: 15,
       paddingBottom: 15,
     },
+    title: {
+      color: theme.palette.primary.main,
+      fontWeight: 600,
+    },
     instructions: {
       paddingTop: 15,
     },
@@ -34,6 +43,8 @@ const useStyles = makeStyles((theme: Theme) =>
 const Home = () => {
   const classes = useStyles();
   const history = useHistory();
+  const theme = useTheme();
+
   return (
     <>
       <Helmet>
@@ -41,8 +52,10 @@ const Home = () => {
       </Helmet>
       <Container>
         <header className={classes.header}>
-          <img src={logo} className="app-logo" alt="logo" />
-          <Typography variant="h2">Dice Stats</Typography>
+          <Logo className="app-logo" fill={theme.palette.primary.main} />
+          <Typography variant="h2" className={classes.title}>
+            Dice Stats
+          </Typography>
         </header>
         <Typography variant="h6">
           Let's keep track of your dice stats!

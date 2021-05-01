@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+import { useTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import ManualThrowButton from "./ManualThrowButton";
 import math from "../../utils/math";
 
-interface DiceProps {
-  value: number;
-}
-
-const Dice = (props: DiceProps) => {
-  return <div className="dice">{props.value}</div>;
-};
+import { ReactComponent as DiceUnknown } from "../../assets/dice-unknown.svg";
+import { ReactComponent as Dice1 } from "../../assets/dice-1.svg";
+import { ReactComponent as Dice2 } from "../../assets/dice-2.svg";
+import { ReactComponent as Dice3 } from "../../assets/dice-3.svg";
+import { ReactComponent as Dice4 } from "../../assets/dice-4.svg";
+import { ReactComponent as Dice5 } from "../../assets/dice-5.svg";
+import { ReactComponent as Dice6 } from "../../assets/dice-6.svg";
 
 interface DicesProps {
   onThrowResolution: (num: number) => void;
@@ -17,6 +18,17 @@ interface DicesProps {
 
 const Dices = (props: DicesProps) => {
   const [currentDices, setCurrentDices] = useState([0, 0]);
+  const theme = useTheme();
+
+  const diceAssets = [
+    <DiceUnknown className="dice" fill={theme.palette.primary.main} />,
+    <Dice1 className="dice" fill={theme.palette.primary.main} />,
+    <Dice2 className="dice" fill={theme.palette.primary.main} />,
+    <Dice3 className="dice" fill={theme.palette.primary.main} />,
+    <Dice4 className="dice" fill={theme.palette.primary.main} />,
+    <Dice5 className="dice" fill={theme.palette.primary.main} />,
+    <Dice6 className="dice" fill={theme.palette.primary.main} />,
+  ];
 
   const handleDiceThrow = () => {
     const dice1 = math.random(1, 6);
@@ -33,10 +45,10 @@ const Dices = (props: DicesProps) => {
   return (
     <>
       <div className="dices">
-        <Dice value={currentDices[0]} />
-        <Dice value={currentDices[1]} />
+        {diceAssets[currentDices[0]]}
+        {diceAssets[currentDices[1]]}
       </div>
-      <div>
+      <div className="buttons">
         <Button variant="outlined" color="primary" onClick={handleDiceThrow}>
           Throw dices
         </Button>

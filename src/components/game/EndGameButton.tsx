@@ -97,7 +97,7 @@ const EndGameButton = (props: EndGameProps) => {
     <div>
       <Button
         disabled={props.disabled}
-        variant="outlined"
+        variant="contained"
         color="primary"
         onClick={handleClickOpen}
       >
