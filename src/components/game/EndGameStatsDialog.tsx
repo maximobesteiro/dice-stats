@@ -71,42 +71,33 @@ const DialogActions = withStyles((theme: Theme) => ({
 interface EndGameProps {
   throws: number[];
   onNewGame: () => void;
-  disabled: boolean;
+  onClose: () => void;
+  open: boolean;
 }
 
-const EndGameButton = (props: EndGameProps) => {
-  const [open, setOpen] = React.useState(false);
+const EndGameStatsDialog = (props: EndGameProps) => {
   const [selectedDice, setSelectedDice] = React.useState(0);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-    setSelectedDice(0);
-  };
   const handleOnBarClick = (data: any, index: any) => {
     setSelectedDice(data.num);
   };
+
   const handleStartNewGame = () => {
-    handleClose();
+    setSelectedDice(0);
     props.onNewGame();
+  };
+
+  const handleClose = () => {
+    setSelectedDice(0);
+    props.onClose();
   };
 
   return (
     <div>
-      <Button
-        disabled={props.disabled}
-        variant="contained"
-        color="primary"
-        onClick={handleClickOpen}
-      >
-        End game
-      </Button>
       <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
-        open={open}
+        open={props.open}
         fullScreen={true}
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
@@ -133,4 +124,4 @@ const EndGameButton = (props: EndGameProps) => {
   );
 };
 
-export default EndGameButton;
+export default EndGameStatsDialog;

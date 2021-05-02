@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import Button from "@material-ui/core/Button";
 import "../assets/App.css";
 import TurnBoard from "../components/game/TurnBoard";
-import EndGameButton from "../components/game/EndGameButton";
+import EndGameStatsDialog from "../components/game/EndGameStatsDialog";
 import { Helmet } from "react-helmet";
 import RouteLeavingGuard from "../components/RouteLeavingGuard";
 import { useHistory } from "react-router-dom";
@@ -13,11 +14,13 @@ function Game() {
   const [gameId, setGameId] = useState(1);
   const [throws, setThrows] = useState(Array<number>());
   const [endGameDisabled, setEndGameDisabled] = useState(true);
+  const [endGameStatsDialogOpen, setEndGameStatsDialogOpen] = useState(false);
   const history = useHistory();
 
   const handleNewGame = () => {
     setGameId(gameId + 1);
     setThrows([]);
+    setEndGameStatsDialogOpen(false);
     setEndGameDisabled(true);
   };
 
@@ -42,10 +45,19 @@ function Game() {
           throws={throws}
           onTerminatedTurn={handleTerminatedTurn}
         />
-        <EndGameButton
+        <Button
           disabled={endGameDisabled}
+          variant="contained"
+          color="primary"
+          onClick={() => setEndGameStatsDialogOpen(true)}
+        >
+          End game
+        </Button>
+        <EndGameStatsDialog
+          open={endGameStatsDialogOpen}
           throws={throws}
           onNewGame={handleNewGame}
+          onClose={() => setEndGameStatsDialogOpen(false)}
         />
       </div>
     </>
