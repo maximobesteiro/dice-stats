@@ -13,6 +13,7 @@ const TurnBoard = (props: TurnBoardProps) => {
 
   const [nextTurnDisabled, setNextTurnDisabled] = useState(true);
   const [currentThrow, setCurrentThrow] = useState(0);
+  const [dicesCardStack, setDicesCardStack] = useState<Array<number>>([]);
 
   const handleNextTurn = () => {
     if (currentThrow > 0) {
@@ -23,8 +24,9 @@ const TurnBoard = (props: TurnBoardProps) => {
     }
   };
 
-  const handleThrowResolution = (num: number) => {
+  const handleThrowResolution = (num: number, cardStack: number[]) => {
     setCurrentThrow(num);
+    setDicesCardStack(cardStack);
     setNextTurnDisabled(false);
   };
 
@@ -33,7 +35,11 @@ const TurnBoard = (props: TurnBoardProps) => {
       <Typography variant="h5" color="textSecondary">
         Turn: {turn}
       </Typography>
-      <Dices key={turn} onThrowResolution={handleThrowResolution} />
+      <Dices
+        key={turn}
+        onThrowResolution={handleThrowResolution}
+        dicesCardStack={dicesCardStack}
+      />
       <Button
         disabled={nextTurnDisabled}
         variant="contained"

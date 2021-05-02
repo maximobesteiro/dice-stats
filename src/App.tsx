@@ -1,4 +1,4 @@
-import React, { ReactElement, useReducer, FC } from "react";
+import React, { ReactElement, useReducer, FC, useState } from "react";
 import {
   createMuiTheme,
   Theme,
@@ -7,6 +7,8 @@ import {
 } from "@material-ui/core/styles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Helmet from "react-helmet";
+
+import { DiceStatsContext } from "./context/DiceStatsContext";
 
 import Layout from "./components/layout/Layout";
 
@@ -22,9 +24,6 @@ import { APP_TITLE } from "./utils/constants";
 // interfaces
 import RouteItem from "./model/RouteItem.model";
 
-// define app context
-const AppContext = React.createContext(null);
-
 // default component
 const DefaultComponent: FC<{}> = (): ReactElement => (
   <div>{`No Component Defined.`}</div>
@@ -32,6 +31,7 @@ const DefaultComponent: FC<{}> = (): ReactElement => (
 
 const App = () => {
   const [useDefaultTheme, toggle] = useReducer((theme) => !theme, true);
+  const [throwMethod, setThrowMethod] = useState("Random");
 
   // define custom theme
   let theme: Theme = createMuiTheme(useDefaultTheme ? lightTheme : darkTheme);
@@ -42,7 +42,7 @@ const App = () => {
       <Helmet>
         <title>{APP_TITLE}</title>
       </Helmet>
-      <AppContext.Provider value={null}>
+      <DiceStatsContext.Provider value={{ throwMethod, setThrowMethod }}>
         <ThemeProvider theme={theme}>
           <Router>
             <Switch>
@@ -60,7 +60,7 @@ const App = () => {
             </Switch>
           </Router>
         </ThemeProvider>
-      </AppContext.Provider>
+      </DiceStatsContext.Provider>
     </>
   );
 };
