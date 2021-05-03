@@ -93,34 +93,29 @@ const EndGameStatsDialog = (props: EndGameProps) => {
   };
 
   return (
-    <div>
-      <Dialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={props.open}
-        fullScreen={true}
-      >
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Game Information
-        </DialogTitle>
-        <DialogContent dividers>
-          <Typography gutterBottom>
-            Tap or click on any of the bars in the next chart to see specific
-            throw history for the selected number.
-          </Typography>
-          <ThrowsHistogram
-            throws={props.throws}
-            onBarClick={handleOnBarClick}
-          />
-          <SpecificDiceThrowChart throws={props.throws} dice={selectedDice} />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleStartNewGame} color="primary">
-            Start new game
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+    <Dialog
+      onClose={handleClose}
+      aria-labelledby="customized-dialog-title"
+      open={props.open}
+      fullScreen={true}
+    >
+      <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        Game Information
+      </DialogTitle>
+      <DialogContent dividers>
+        <Typography gutterBottom>
+          Tap or click on any of the bars in the next chart to see specific
+          throw history for the selected number.
+        </Typography>
+        <ThrowsHistogram throws={props.throws} onBarClick={handleOnBarClick} />
+        <SpecificDiceThrowChart throws={props.throws} dice={selectedDice} />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleStartNewGame} color="primary">
+          Start new game
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 

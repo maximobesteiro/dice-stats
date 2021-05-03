@@ -38,7 +38,7 @@ const Dices: FC<DicesProps> = ({ dicesCardStack, ...props }) => {
   ];
 
   const handleDiceThrow = () => {
-    console.log(throwMethod, dicesCardStack);
+    //console.log(throwMethod, dicesCardStack);
     let dice1: number, dice2: number;
     let localCardStack = dicesCardStack;
 
