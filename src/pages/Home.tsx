@@ -1,14 +1,8 @@
 import { Helmet } from "react-helmet";
 import { Typography, Container, Button, Box } from "@material-ui/core/";
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-  useTheme,
-} from "@material-ui/core/styles";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 
-import { ReactComponent as Logo } from "../assets/dice-stats-logo.svg";
 import "../assets/App.css";
 
 // constants
@@ -16,20 +10,6 @@ import { PAGE_TITLE_HOME } from "../utils/constants";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    header: {
-      flex: 1,
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "center",
-      marginLeft: -40,
-      paddingTop: 15,
-      paddingBottom: 15,
-    },
-    title: {
-      color: theme.palette.primary.main,
-      fontWeight: 600,
-    },
     instructions: {
       paddingTop: 15,
     },
@@ -43,7 +23,6 @@ const useStyles = makeStyles((theme: Theme) =>
 const Home = () => {
   const classes = useStyles();
   const history = useHistory();
-  const theme = useTheme();
 
   return (
     <>
@@ -51,12 +30,6 @@ const Home = () => {
         <title>{PAGE_TITLE_HOME}</title>
       </Helmet>
       <Container>
-        <header className={classes.header}>
-          <Logo className="app-logo" fill={theme.palette.primary.main} />
-          <Typography variant="h2" className={classes.title}>
-            Dice Stats
-          </Typography>
-        </header>
         <Typography variant="h6">
           Let's keep track of your dice stats!
         </Typography>
