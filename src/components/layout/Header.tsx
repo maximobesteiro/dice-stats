@@ -87,7 +87,7 @@ const Header: FC<Props> = ({
         >
           <MenuIcon />
         </IconButton>
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", alignItems: "baseline" }}>
           <Logo
             className={classes.logo}
             fill={theme.palette.primary.contrastText}
