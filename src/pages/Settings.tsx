@@ -53,6 +53,7 @@ const Settings: FC<{}> = (): ReactElement => {
               edge="end"
               onChange={handleChange}
               checked={throwMethod === "Balanced"}
+              color="primary"
               inputProps={{
                 "aria-labelledby": "switch-list-label-balanced-dices",
               }}
