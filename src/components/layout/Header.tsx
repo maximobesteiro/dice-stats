@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       //color: theme.palette.primary.main,
       fontWeight: 600,
+      fontFamily: "Lobster",
     },
     menuButton: {
       marginRight: 36,

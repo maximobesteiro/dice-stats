@@ -4,6 +4,9 @@ import deepOrange from "@material-ui/core/colors/deepOrange";
 
 // define light theme colors
 export const lightTheme: Theme = createMuiTheme({
+  typography: {
+    fontFamily: "Montserrat",
+  },
   palette: {
     type: "light",
     primary: {
@@ -17,6 +20,9 @@ export const lightTheme: Theme = createMuiTheme({
 
 // define dark theme colors
 export const darkTheme: Theme = createMuiTheme({
+  typography: {
+    fontFamily: "Montserrat Alternates",
+  },
   palette: {
     type: "dark",
     primary: {
